@@ -16,11 +16,8 @@ export class NavbarComponent {
     return !!localStorage.getItem('token');
   }
 
-  onLogin(): void {
+  onLogout(): void {
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
-  }
-
-  onProfile(): void {
-    this.router.navigate(['/profile']);
   }
 }

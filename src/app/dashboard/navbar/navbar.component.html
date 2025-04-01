@@ -3,7 +3,6 @@
     <a routerLink="/">Trailmenu</a>
   </div>
   <div class="navbar-buttons">
-    <button *ngIf="!isLoggedIn" (click)="onLogin()">Login</button>
-    <button *ngIf="isLoggedIn" (click)="onProfile()">Profile</button>
+    <button *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
   </div>
 </nav>

@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  // { path: '**', redirectTo: '', canActivate: [authGuard] }, only when there is a dash
-  { path: '**', redirectTo: 'login' }, // then redirect to main
+  { path: '**', component: DashboardComponent, canActivate: [authGuard] },
 ];
