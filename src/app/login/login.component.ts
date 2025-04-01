@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import axios from 'axios';
 
 @Component({
@@ -14,6 +15,8 @@ export class LoginComponent {
   password: string = '';
   static token: string | null = null;
 
+  constructor(private router: Router) {}
+
   async onSubmit(): Promise<void> {
     try {
       const response = await axios.post('http://localhost:8080/user/token', {
@@ -23,9 +26,9 @@ export class LoginComponent {
 
       LoginComponent.token = response.data.token;
       console.log('Login successful, token:', LoginComponent.token);
+      this.router.navigate(['/']);
     } catch (error) {
       console.error('Login failed:', error);
-      alert('Invalid username or password');
     }
   }
 }
