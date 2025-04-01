@@ -1,0 +1,9 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">Trailmenu</a>
+  </div>
+  <div class="navbar-buttons">
+    <button *ngIf="!isLoggedIn" (click)="onLogin()">Login</button>
+    <button *ngIf="isLoggedIn" (click)="onProfile()">Profile</button>
+  </div>
+</nav>

@@ -13,7 +13,6 @@ import axios from 'axios';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  static token: string | null = null;
 
   constructor(private router: Router) {}
 
@@ -24,8 +23,8 @@ export class LoginComponent {
         password: this.password,
       });
 
-      LoginComponent.token = response.data.token;
-      console.log('Login successful, token:', LoginComponent.token);
+      localStorage.setItem('token', response.data.token);
+      console.log('Login successful, token:', response.data.token);
       this.router.navigate(['/']);
     } catch (error) {
       console.error('Login failed:', error);
