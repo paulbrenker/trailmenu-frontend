@@ -18,6 +18,16 @@ h2 {
   color: #333;
 }
 
+.error-message {
+  margin-bottom: 15px;
+  padding: 10px;
+  color: #d9534f; /* Red color for error */
+  background-color: #f8d7da; /* Light red background */
+  border: 1px solid #f5c6cb; /* Red border */
+  border-radius: 5px;
+  text-align: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -43,6 +53,22 @@ input:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.register-link {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: left;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 
 button {

@@ -1,5 +1,8 @@
 <div class="login-container">
   <h2>Login</h2>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div>
       <label for="username">Username</label>
@@ -20,6 +23,9 @@
         [(ngModel)]="password"
         required
       />
+    </div>
+    <div class="register-link">
+      Not registered yet? <a routerLink="/register">Sign Up</a>
     </div>
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
