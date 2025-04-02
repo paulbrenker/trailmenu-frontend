@@ -1,0 +1,40 @@
+<div class="app-welcome-container">
+  <h2>Register</h2>
+  <div class="info-text">
+    This Application does not save any personal identification of you. Just a
+    unique combination of username and a password. However, The owner of the
+    site (Paul Brenker) must approve your profile. Please construct your
+    username so that he will recognize you.
+  </div>
+  <div *ngIf="errorMessage" class="app-welcome-error-message">
+    {{ errorMessage }}
+  </div>
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <div>
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="username"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+      />
+    </div>
+    <div class="button-block">
+      <button class="white-button" type="button" (click)="goBack()">
+        Back
+      </button>
+      <button type="submit" [disabled]="!registerForm.valid">Register</button>
+    </div>
+  </form>
+</div>

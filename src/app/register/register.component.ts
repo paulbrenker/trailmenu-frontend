@@ -1,17 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import axios from 'axios';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
-export class LoginComponent {
+export class RegisterComponent {
   username: string = '';
   password: string = '';
   errorMessage: string | null = null;
@@ -29,20 +29,18 @@ export class LoginComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const response = await axios.post('http://localhost:8080/user/token', {
+      const response = await axios.post('http://localhost:8080/user', {
         username: this.username,
         password: this.password,
       });
 
-      localStorage.setItem('token', response.data.token);
       console.log('Login successful, token:', response.data.token);
       this.router.navigate(['/']);
     } catch (error) {
-      this.errorMessage = 'Invalid username or password';
+      this.errorMessage = 'The user could not be created';
     }
   }
-
-  async goToRegister(): Promise<void> {
-    this.router.navigate(['/register']);
+  async goBack(): Promise<void> {
+    this.router.navigate(['/login']);
   }
 }
