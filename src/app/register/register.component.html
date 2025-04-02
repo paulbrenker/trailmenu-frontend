@@ -1,10 +1,10 @@
-<div class="app-welcome-container">
+<div *ngIf="!registered" class="app-welcome-container">
   <h2>Register</h2>
   <div class="info-text">
     This Application does not save any personal identification. Just a unique
-    combination of username and password. However, The owner of the site (Paul
-    Brenker) must approve you. Please construct your username so that he will
-    recognize it.
+    combination of username and password.<br />
+    However, The owner of the application must approve you. Please choose a
+    username he will recognize.
   </div>
   <div *ngIf="errorMessage" class="app-welcome-error-message">
     {{ errorMessage }}
@@ -37,4 +37,14 @@
       <button type="submit" [disabled]="!registerForm.valid">Register</button>
     </div>
   </form>
+</div>
+<div *ngIf="registered" class="app-welcome-container">
+  <h2>Registration Successful</h2>
+  <div class="info-text">
+    Please wait for the owner to approve your account.
+  </div>
+  <div class="button-block">
+    <div></div>
+    <button type="button" (click)="goBack()">To Login</button>
+  </div>
 </div>

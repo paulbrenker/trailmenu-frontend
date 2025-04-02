@@ -15,6 +15,7 @@ export class RegisterComponent {
   username: string = '';
   password: string = '';
   errorMessage: string | null = null;
+  registered: boolean = false;
 
   constructor(private router: Router) {}
   ngOnInit(): void {
@@ -35,7 +36,7 @@ export class RegisterComponent {
       });
 
       console.log('Login successful, token:', response.data.token);
-      this.router.navigate(['/']);
+      this.registered = true;
     } catch (error) {
       this.errorMessage = 'The user could not be created';
     }
