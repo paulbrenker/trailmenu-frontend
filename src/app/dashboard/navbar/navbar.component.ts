@@ -11,11 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   constructor(private router: Router) {}
+  dropdownOpen: boolean = false;
 
-  get isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
   }
-
   onLogout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);

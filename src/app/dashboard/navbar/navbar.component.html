@@ -3,6 +3,13 @@
     <a routerLink="/">Trailmenu</a>
   </div>
   <div class="navbar-buttons">
-    <button *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+    <div class="avatar-container" (click)="toggleDropdown()">
+      <img src="assets/avatar.jpg" alt="Avatar" class="avatar" />
+      <div *ngIf="dropdownOpen" class="dropdown-menu">
+        <a routerLink="/profile">Profile</a>
+        <a *ngIf="dropdownOpen" routerLink="/admin">Admin Area</a>
+        <a (click)="onLogout()">Logout</a>
+      </div>
+    </div>
   </div>
 </nav>
