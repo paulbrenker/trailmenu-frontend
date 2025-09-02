@@ -30,7 +30,7 @@ export class RegisterComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const response = await axios.post('http://localhost:8080/user', {
+      const response = await axios.post('https://api.pbrenk.com/user', {
         username: this.username,
         password: this.password,
       });

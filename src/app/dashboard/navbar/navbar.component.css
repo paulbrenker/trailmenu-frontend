@@ -4,18 +4,24 @@
   align-items: center;
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #3e8538;
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--primary-color);
 }
 
 .navbar a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
   font-size: 20px;
 }
 
 .navbar-buttons {
   position: relative;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .avatar-container {
@@ -28,7 +34,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid var(--primary-bg);
 }
 
 .dropdown-menu {
@@ -37,9 +43,9 @@
   max-width: 150px;
   width: 500%;
   right: 0;
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
+  background-color: var(--primary-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--button-disabled);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -51,11 +57,11 @@
 
 .dropdown-menu a {
   text-decoration: none;
-  color: #555;
+  color: var(--input-request);
   padding: 5px 10px;
   border-radius: 5px;
 }
 
 .dropdown-menu a:hover {
-  background-color: #f0f0f0;
+  background-color: var(--button-disabled);
 }

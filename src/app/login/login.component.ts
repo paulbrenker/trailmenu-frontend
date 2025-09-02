@@ -29,7 +29,7 @@ export class LoginComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const response = await axios.post('http://localhost:8080/user/token', {
+      const response = await axios.post('https://api.pbrenk.com/user/token', {
         username: this.username,
         password: this.password,
       });
