@@ -1,3 +1,44 @@
+:root {
+  --primary-bg: #fffefe;
+  --primary-color: #333;
+  --accent-color: #007bff;
+  --error-bg: #f8d7da;
+  --error-color: #d9534f;
+  --error-border: #f5c6cb;
+  --input-bg: #fff;
+  --button-bg: #6bb065;
+  --button-hover-bg: #215d1a;
+  --button-text: #fff;
+  --button-disabled: #ccc;
+  --input-request: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-bg: #313030;
+    --primary-color: #eee;
+    --accent-color: #90caf9;
+    --error-bg: #311818;
+    --error-color: #ff6f60;
+    --error-border: #442528;
+    --input-bg: #222;
+    --button-bg: #215d1a;
+    --button-hover-bg: #6bb065;
+    --button-text: #fff;
+    --button-disabled: #646363;
+    --input-request: #b09e9e;
+  }
+}
+
+body,
+html {
+  height: 100%;
+  background-color: var(--primary-bg);
+  color: var(--primary-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+    sans-serif;
+}
+
 body.login-background,
 html.login-background {
   height: 100%;
@@ -18,7 +59,7 @@ html.login-background {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: white;
+  background-color: var(--primary-bg);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -27,9 +68,9 @@ html.login-background {
 .app-welcome-error-message {
   margin-bottom: 15px;
   padding: 10px;
-  color: #d9534f;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
+  color: var(--error-color);
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
   border-radius: 5px;
   text-align: center;
 }
@@ -37,7 +78,7 @@ html.login-background {
 h2 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: var(--primary-color);
 }
 
 form {
@@ -48,7 +89,7 @@ form {
 
 label {
   font-size: 14px;
-  color: #555;
+  color: var(--input-request);
   text-align: left;
 }
 
@@ -56,14 +97,14 @@ input {
   width: 100%;
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--input-request);
   border-radius: 5px;
   box-sizing: border-box;
 }
 
 input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--accent-color);
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
@@ -71,7 +112,7 @@ input:focus {
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 14px;
-  color: #555;
+  color: var(--input-request);
   text-align: left;
 }
 
@@ -88,8 +129,8 @@ button {
   align-self: flex-end;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: #6bb065;
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--primary-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -97,27 +138,27 @@ button {
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: var(--button-disabled);
   cursor: not-allowed;
 }
 
 button:hover:not(:disabled) {
-  background-color: #1c4d17;
+  background-color: var(--button-hover-bg);
 }
 
 .white-button {
   align-self: flex-end;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: white;
-  color: #6bb065;
-  border: 1px solid #6bb065;
+  background-color: var(--primary-bg);
+  color: var(--primary-color) 5;
+  border: 1px solid var(--button-hover-bg);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .white-button:hover:not(:disabled) {
-  background-color: #6bb065;
-  color: white;
+  background-color: var(--button-hover-bg);
+  color: var(--primary-color);
 }
