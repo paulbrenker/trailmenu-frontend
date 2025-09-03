@@ -1,0 +1,10 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    {{ collapsed ? "☰" : "✕" }}
+  </button>
+  <div class="sidebar-options">
+    <button class="sidebar-option" (click)="navigateTo('/users')">
+      @if(!collapsed){👤 Users}@else{👤}
+    </button>
+  </div>
+</div>
