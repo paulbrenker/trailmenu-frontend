@@ -1,11 +1,13 @@
 .dashboard-layout {
   display: flex;
   min-height: 100vh;
+  padding-top: 30px;
 }
 
 .dashboard-content {
   flex: 1;
   padding: 32px;
+  padding-top: 60px;
   margin-left: 20px;
   transition: margin-left 0.3s;
 }

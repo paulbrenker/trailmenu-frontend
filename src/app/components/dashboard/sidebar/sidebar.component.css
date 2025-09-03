@@ -1,7 +1,7 @@
 .sidebar {
-  top: 1;
-  left: 0;
-  height: 100vh;
+  position: sticky;
+  top: 56px; /* Set this to your navbar height */
+  height: calc(100vh - 38px); /* Subtract navbar height */
   width: 220px;
   background-color: var(--primary-bg);
   color: var(--primary-color);
@@ -14,7 +14,7 @@
 }
 
 .sidebar.collapsed {
-  width: 60px;
+  width: 47px;
 }
 
 .toggle-btn {
@@ -23,7 +23,8 @@
   color: var(--primary-color);
   font-size: 24px;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px 10px;
+
   align-self: flex-end;
 }
 
@@ -32,29 +33,48 @@
 }
 
 .sidebar-options {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-left: 5px;
-  padding-right: 5px;
+  gap: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .sidebar.collapsed .sidebar-options {
-  padding-left: 8px;
+  padding: 5px;
+  margin-right: 3px;
+  text-align: center;
 }
 
 .sidebar-option {
   background-color: var(--secondary-bg);
-  padding: 10px;
+  padding: 5px;
   width: 100%;
+  height: 100%;
   text-align: left;
   border-radius: 5px;
   color: var(--primary-color);
-  font-size: 18px;
+  font-size: 17px;
   transition: color 0.2s;
 }
 
 .sidebar-option:hover {
   background-color: var(--secondary-bg-hover);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  margin-bottom: 20px;
+  margin-right: 3px;
+  padding: 5px;
+}
+
+.logout-btn {
+  color: var(--error-color);
+  background-color: var(--error-bg);
+}
+
+.logout-btn:hover {
+  background-color: var(--error-bg-hover);
 }

@@ -6,5 +6,19 @@
     <button class="sidebar-option" (click)="navigateTo('/users')">
       @if(!collapsed){👤 Users}@else{👤}
     </button>
+    <button class="sidebar-option" (click)="navigateTo('/recipes')">
+      @if(!collapsed){🥣 Recipes}@else{🥣}
+    </button>
+    <button class="sidebar-option" (click)="navigateTo('/ingredients')">
+      @if(!collapsed){🥕 Ingredients}@else{🥕}
+    </button>
+    <button class="sidebar-option" (click)="navigateTo('/trips')">
+      @if(!collapsed){🧭 Trips}@else{🧭}
+    </button>
+  </div>
+  <div class="sidebar-bottom">
+    <button class="sidebar-option logout-btn" (click)="onLogout()">
+      @if(!collapsed){&#x23FB; Logout}@else{&#x23FB;}
+    </button>
   </div>
 </div>
