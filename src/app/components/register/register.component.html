@@ -1,4 +1,5 @@
-<div *ngIf="!registered" class="app-welcome-container">
+@if(!registered){
+<div class="app-welcome-container">
   <h2>Register</h2>
   <div class="info-text">
     This Application does not save any personal identification. Just a unique
@@ -6,9 +7,11 @@
     However, The owner of the application must approve you. Please choose a
     username he will recognize.
   </div>
-  <div *ngIf="errorMessage" class="app-welcome-error-message">
+  @if(errorMessage){
+  <div class="app-welcome-error-message">
     {{ errorMessage }}
   </div>
+  }
   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <div>
       <label for="username">Username</label>
@@ -38,7 +41,8 @@
     </div>
   </form>
 </div>
-<div *ngIf="registered" class="app-welcome-container">
+} @else {
+<div class="app-welcome-container">
   <h2>Registration Successful</h2>
   <div class="info-text">
     Please wait for the owner to approve your account.
@@ -48,3 +52,4 @@
     <button type="button" (click)="goBack()">To Login</button>
   </div>
 </div>
+}

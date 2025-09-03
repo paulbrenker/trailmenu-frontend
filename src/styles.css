@@ -1,13 +1,21 @@
 :root {
   --primary-bg: #fffefe;
-  --primary-color: #333;
+  --secondary-bg: #f8f9fa;
+  --secondary-bg-hover: #e9ecef;
+  --accent-line: #4d4d4d;
+  --primary-color: #212529;
+  --brand-color: #529f4f;
+  --brand-color-hover: #215d1a;
+  --brand-color-bg-text: #fffefe;
   --accent-color: #007bff;
   --error-bg: #f8d7da;
   --error-color: #d9534f;
+  --error-bg-hover: #b4332e;
   --error-border: #f5c6cb;
   --input-bg: #fff;
   --button-bg: #6bb065;
   --button-hover-bg: #215d1a;
+  --button-color: #e1e1e1;
   --button-text: #fff;
   --button-disabled: #ccc;
   --input-request: #555;
@@ -15,15 +23,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-bg: #313030;
-    --primary-color: #eee;
+    --primary-bg: #222222;
+    --secondary-bg: #2c2c2c;
+    --secondary-bg-hover: #3a3a3a;
+    --accent-line: #4d4d4d;
+    --primary-color: #e1e1e1;
+    --brand-color-hover: #6bb065;
     --accent-color: #90caf9;
     --error-bg: #311818;
     --error-color: #ff6f60;
     --error-border: #442528;
     --input-bg: #222;
     --button-bg: #215d1a;
-    --button-hover-bg: #6bb065;
+    --button-hover-bg: #8dbd88;
     --button-text: #fff;
     --button-disabled: #646363;
     --input-request: #b09e9e;
@@ -129,8 +141,8 @@ button {
   align-self: flex-end;
   padding: 10px 20px;
   font-size: 14px;
-  background-color: var(--button-bg);
-  color: var(--primary-color);
+  background-color: var(--brand-color);
+  color: var(--button-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;

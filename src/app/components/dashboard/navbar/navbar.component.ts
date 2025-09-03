@@ -12,12 +12,4 @@ import { CommonModule } from '@angular/common';
 export class NavbarComponent {
   constructor(private router: Router) {}
   dropdownOpen: boolean = false;
-
-  toggleDropdown(): void {
-    this.dropdownOpen = !this.dropdownOpen;
-  }
-  onLogout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
 }
