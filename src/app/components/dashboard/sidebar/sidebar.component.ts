@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { isOfRole } from '../../../services/users/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +18,10 @@ export class SidebarComponent {
   }
   navigateTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  userIsAdmin(): boolean {
+    return isOfRole('ADMIN');
   }
 
   onLogout(): void {

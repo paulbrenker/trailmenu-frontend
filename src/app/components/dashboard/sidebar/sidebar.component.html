@@ -3,9 +3,10 @@
     {{ collapsed ? "☰" : "✕" }}
   </button>
   <div class="sidebar-options">
+    @if(userIsAdmin()){
     <button class="sidebar-option" (click)="navigateTo('/users')">
-      @if(!collapsed){👤 Users}@else{👤}
-    </button>
+      @if(!collapsed){👤 Users}@else{👤}</button
+    >}
     <button class="sidebar-option" (click)="navigateTo('/recipes')">
       @if(!collapsed){🥣 Recipes}@else{🥣}
     </button>

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import axios from 'axios';
+import { getToken } from '../../services/users/user.service';
 
 @Component({
   selector: 'app-login',
@@ -29,16 +29,12 @@ export class LoginComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const response = await axios.post('https://api.pbrenk.com/user/token', {
-        username: this.username,
-        password: this.password,
+      await getToken(this.username, this.password).then((token) => {
+        localStorage.setItem('token', token);
+        this.router.navigate(['/']);
       });
-
-      localStorage.setItem('token', response.data.token);
-      console.log('Login successful, token:', response.data.token);
-      this.router.navigate(['/']);
     } catch (error) {
-      this.errorMessage = 'Invalid username or password';
+      this.errorMessage = 'Could not log in';
     }
   }
 
