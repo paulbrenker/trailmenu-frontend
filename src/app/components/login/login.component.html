@@ -1,9 +1,9 @@
 <div class="app-welcome-container">
   <h2>Login</h2>
-  @if(errorMessage){
-  <div class="app-welcome-error-message">
-    {{ errorMessage }}
-  </div>
+  @if (errorMessage) {
+    <div class="app-welcome-error-message">
+      {{ errorMessage }}
+    </div>
   }
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
     <div>
@@ -13,8 +13,7 @@
         id="username"
         name="username"
         [(ngModel)]="username"
-        required
-      />
+        required />
     </div>
     <div>
       <label for="password">Password</label>
@@ -23,8 +22,7 @@
         id="password"
         name="password"
         [(ngModel)]="password"
-        required
-      />
+        required />
     </div>
     <div class="info-text">
       Not registered yet? <a (click)="goToRegister()">Sign Up</a>

@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { isOfRole } from '../../../services/user.service'
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
-  standalone: true,
+  standalone: true
 })
 export class SidebarComponent {
-  collapsed = false;
+  collapsed = false
 
   constructor(private router: Router) {}
 
-  toggleSidebar() {
-    this.collapsed = !this.collapsed;
+  toggleSidebar(): void {
+    this.collapsed = !this.collapsed
   }
-  navigateTo(route: string) {
-    this.router.navigate([route]);
+  navigateTo(route: string): void {
+    this.router.navigate([route])
+  }
+
+  userIsAdmin(): boolean {
+    return isOfRole('ADMIN')
   }
 
   onLogout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('token')
+    this.router.navigate(['/login'])
   }
 }

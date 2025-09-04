@@ -1,9 +1,9 @@
 ---
 name: Frontend Story
 about: User Story for the Frontend Service
-title: "/FE/Title"
-labels: ""
-assignees: ""
+title: '/FE/Title'
+labels: ''
+assignees: ''
 ---
 
 ### Story
