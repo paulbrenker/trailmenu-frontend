@@ -1,4 +1,13 @@
-dist/
 node_modules/
+
+dist/
+out-tsc/
+build/
+
 coverage/
+
 .angular/
+
+*.tsbuildinfo
+
+*.env
