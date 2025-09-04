@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-users',
@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-export class UsersComponent {
-
-}
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
+export class UsersComponent {}
