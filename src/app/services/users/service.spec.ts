@@ -58,8 +58,10 @@ describe('getAllUsers', () => {
 
     const result = await getAllUsers()
 
-    expect(axios.get.bind(axios)).toHaveBeenCalledTimes(1)
-    expect(axios.get.bind(axios)).toHaveBeenCalledWith(
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    expect(mockedAxios.get).toHaveBeenCalledTimes(1)
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    expect(mockedAxios.get).toHaveBeenCalledWith(
       'https://api.pbrenk.com/user',
       {
         headers: {},
@@ -75,7 +77,8 @@ describe('getAllUsers', () => {
 
     await expect(getAllUsers()).rejects.toThrow('Network Error')
 
-    expect(axios.get.bind(axios)).toHaveBeenCalledWith(
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    expect(mockedAxios.get).toHaveBeenCalledWith(
       'https://api.pbrenk.com/user',
       expect.objectContaining({
         headers: {},
