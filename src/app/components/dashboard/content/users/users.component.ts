@@ -25,6 +25,6 @@ export class UsersComponent implements OnInit {
   }
 
   getRoles(user: User): string {
-    return user.roles.map(r => r.type).join(', ')
+    return user.roles[0].type
   }
 }

@@ -1,40 +1,63 @@
 .users-container {
-  max-width: 600px;
   margin: 20px auto;
-  font-family: Arial, sans-serif;
-}
-
-h2 {
-  text-align: center;
+  width: 80%;
 }
 
 .loading {
   text-align: center;
-  color: #555;
+  color: var(--primary-color);
 }
 
 .error {
   text-align: center;
-  color: red;
+  color: var(--error-color);
 }
 
 table {
-  width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  border-radius: 6px;
+  width: 100%;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: none;
   padding: 8px;
   text-align: left;
 }
 
+th:last-child,
+td:last-child {
+  text-align: right;
+}
+
 th {
-  background-color: #f4f4f4;
+  background-color: var(--primary-bg);
+  border-bottom: solid 1px var(--accent-line);
+  position: relative;
 }
 
 tr:nth-child(even) {
-  background-color: #fafafa;
+  background-color: var(--secondary-bg);
+}
+
+tr:nth-child(even):hover {
+  background-color: var(--secondary-bg-hover);
+}
+
+tr:nth-child(odd):hover {
+  background-color: var(--secondary-bg-hover);
+}
+
+.role-badge {
+  background-color: var(--accent-color);
+  color: var(--primary-bg);
+  border: none;
+  border-radius: 12px;
+  padding: 2px 4px;
+  font-size: 0.9em;
+}
+
+.role-badge:hover {
+  background-color: var(--accent-color * 10%);
 }
