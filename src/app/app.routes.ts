@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router'
 import { LoginComponent } from './components/login/login.component'
-import { authGuard } from './auth.guard'
+import { adminGuard, authGuard } from './auth.guard'
 import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { RegisterComponent } from './components/register/register.component'
 import { UsersComponent } from './components/dashboard/content/users/users.component'
@@ -13,9 +13,7 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'users', component: UsersComponent },
-      // Add other child routes here
-      { path: '', redirectTo: 'users', pathMatch: 'full' }
+      { path: 'users', component: UsersComponent, canActivate: [adminGuard] }
     ]
   },
   { path: '**', redirectTo: '' }
