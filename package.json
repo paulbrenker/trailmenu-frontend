@@ -15,7 +15,18 @@
   "jest": {
     "preset": "ts-jest",
     "testPathIgnorePatterns": [
-      "dist/"
+      "/node_modules/",
+      "/dist/"
+    ],
+    "testMatch": [
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.spec.ts",
+      "!src/main.ts"
     ],
     "testEnvironment": "node",
     "transform": {
