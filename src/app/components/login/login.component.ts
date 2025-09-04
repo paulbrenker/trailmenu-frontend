@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { getToken } from '../../services/users/user.service'
+import { getToken } from '../../services/user.service'
 
 @Component({
   selector: 'app-login',

@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { jwtDecode } from 'jwt-decode'
-import { PageResponse } from '../pagination.model'
-import { User } from './user.model'
+import { PageResponse } from '../models/pagination.model'
+import { User } from '../models/user.model'
 
 const API_BASE_URL = 'https://api.pbrenk.com'
 const LIMIT = 10 // default limit for pagination
@@ -49,16 +49,21 @@ export function isOfRole(role: string): boolean {
 }
 
 export async function getAllUsers(): Promise<User[]> {
-  const response: PageResponse = await axios.get(`${API_BASE_URL}/user`, {
-    headers: getAuthHeaders(),
-    params: { limit: LIMIT }
-  })
-  while (response.pageInfo.hasNext) {
-    const nextPage: PageResponse = await axios.get(`${API_BASE_URL}/user`, {
+  let response: AxiosResponse<PageResponse> = await axios.get(
+    `${API_BASE_URL}/user`,
+    {
       headers: getAuthHeaders(),
-      params: { limit: LIMIT, after: response.pageInfo.cursor }
+      params: { limit: LIMIT }
+    }
+  )
+  const users: User[] = response.data.data
+  console.log(users)
+  while (response.data.pageInfo.hasNext) {
+    response = await axios.get(`${API_BASE_URL}/user`, {
+      headers: getAuthHeaders(),
+      params: { limit: LIMIT, after: response.data.pageInfo.cursor }
     })
-    response.data.push(...nextPage.data)
+    users.concat(response.data.data)
   }
-  return response.data
+  return users
 }

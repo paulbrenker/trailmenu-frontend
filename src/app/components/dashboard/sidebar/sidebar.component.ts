@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { isOfRole } from '../../../services/users/user.service'
+import { isOfRole } from '../../../services/user.service'
 
 @Component({
   selector: 'app-sidebar',

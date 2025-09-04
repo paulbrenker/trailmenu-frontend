@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { getAllUsers } from './user.service'
-import { PageResponse } from '../pagination.model'
+import { PageResponse } from '../models/pagination.model'
 
 jest.mock('axios')
 
@@ -35,24 +35,26 @@ describe('getAllUsers', () => {
   })
 
   it('fetches users successfully', async () => {
-    const mockResponse: PageResponse = {
-      pageInfo: {
-        pageSize: 1,
-        hasNext: false,
-        cursor: null
-      },
-      totalCount: 1,
-      data: [
-        {
-          username: 'paulbrenker',
-          roles: [
-            {
-              type: 'ADMIN'
-            }
-          ]
-        }
-      ]
-    }
+    const mockResponse: AxiosResponse<PageResponse> = {
+      data: {
+        pageInfo: {
+          pageSize: 1,
+          hasNext: false,
+          cursor: null
+        },
+        totalCount: 1,
+        data: [
+          {
+            username: 'paulbrenker',
+            roles: [
+              {
+                type: 'ADMIN'
+              }
+            ]
+          }
+        ]
+      }
+    } as AxiosResponse<PageResponse>
 
     mockedAxios.get.mockResolvedValue(mockResponse)
 
@@ -68,7 +70,7 @@ describe('getAllUsers', () => {
         params: { limit: 10 }
       }
     )
-    expect(result).toEqual(mockResponse.data)
+    expect(result).toEqual(mockResponse.data.data)
   })
 
   it('propagates errors when the API call fails', async () => {
