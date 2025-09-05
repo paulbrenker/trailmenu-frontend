@@ -8,6 +8,7 @@
   --brand-color-hover: #215d1a;
   --brand-color-bg-text: #fffefe;
   --accent-color: #007bff;
+  --accent-color-hover: #90caf9;
   --error-bg: #f8d7da;
   --error-color: #d9534f;
   --error-bg-hover: #b4332e;
@@ -30,6 +31,7 @@
     --primary-color: #e1e1e1;
     --brand-color-hover: #6bb065;
     --accent-color: #90caf9;
+    --accent-color-hover: #007bff;
     --error-bg: #311818;
     --error-color: #ff6f60;
     --error-border: #442528;
