@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { PageResponse } from '../models/pagination.model'
-import { User } from '../models/user.model'
+import { Role, User } from '../models/user.model'
 
 const API_BASE_URL = 'https://api.pbrenk.com'
 const LIMIT = 10 // default limit for pagination
@@ -48,22 +48,28 @@ export function isOfRole(role: string): boolean {
   }
 }
 
-export async function getAllUsers(): Promise<User[]> {
-  let response: AxiosResponse<PageResponse> = await axios.get(
+export async function getAllUsers(
+  limit: number = LIMIT,
+  cursor = ''
+): Promise<PageResponse> {
+  const response: AxiosResponse<PageResponse> = await axios.get(
     `${API_BASE_URL}/user`,
     {
       headers: getAuthHeaders(),
-      params: { limit: LIMIT }
+      params: { limit, after: cursor }
     }
   )
-  const users: User[] = response.data.data
-  console.log(users)
-  while (response.data.pageInfo.hasNext) {
-    response = await axios.get(`${API_BASE_URL}/user`, {
-      headers: getAuthHeaders(),
-      params: { limit: LIMIT, after: response.data.pageInfo.cursor }
-    })
-    users.concat(response.data.data)
-  }
-  return users
+  return response.data
+}
+
+export async function updateUserRole(
+  username: string,
+  role: Role
+): Promise<User> {
+  const response: AxiosResponse<User> = await axios.patch(
+    `${API_BASE_URL}/user/${username}/approval`,
+    { roles: [role] },
+    { headers: getAuthHeaders() }
+  )
+  return response.data
 }
