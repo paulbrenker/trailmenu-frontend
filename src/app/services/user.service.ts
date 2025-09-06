@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { PageResponse } from '../models/pagination.model'
-import { User } from '../models/user.model'
+import { Role, User } from '../models/user.model'
 
 const API_BASE_URL = 'https://api.pbrenk.com'
 const LIMIT = 10 // default limit for pagination
@@ -58,6 +58,18 @@ export async function getAllUsers(
       headers: getAuthHeaders(),
       params: { limit, after: cursor }
     }
+  )
+  return response.data
+}
+
+export async function updateUserRole(
+  username: string,
+  role: Role
+): Promise<User> {
+  const response: AxiosResponse<User> = await axios.patch(
+    `${API_BASE_URL}/user/${username}/approval`,
+    { roles: [role] },
+    { headers: getAuthHeaders() }
   )
   return response.data
 }

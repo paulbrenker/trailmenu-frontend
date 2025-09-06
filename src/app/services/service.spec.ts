@@ -67,10 +67,10 @@ describe('getAllUsers', () => {
       'https://api.pbrenk.com/user',
       {
         headers: {},
-        params: { limit: 10 }
+        params: { limit: 10, after: '' }
       }
     )
-    expect(result).toEqual(mockResponse.data.data)
+    expect(result).toEqual(mockResponse.data)
   })
 
   it('propagates errors when the API call fails', async () => {
@@ -84,7 +84,7 @@ describe('getAllUsers', () => {
       'https://api.pbrenk.com/user',
       expect.objectContaining({
         headers: {},
-        params: { limit: 10 }
+        params: { limit: 10, after: '' }
       })
     )
   })

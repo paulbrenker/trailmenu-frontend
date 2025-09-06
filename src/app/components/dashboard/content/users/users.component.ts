@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { UserPageDisplay } from '../../../../models/user.model'
-import { getAllUsers } from '../../../../services/user.service'
+import { Role, User, UserPageDisplay } from '../../../../models/user.model'
+import { getAllUsers, updateUserRole } from '../../../../services/user.service'
 import { PageResponse } from '../../../../models/pagination.model'
 
 @Component({
@@ -32,10 +32,16 @@ export class UsersComponent implements OnInit {
   }
 
   async changeRole(username: string, newRole: string): Promise<void> {
-    // TODO implement API call
+    const updatedUser: User = await updateUserRole(username, {
+      type: newRole
+    } as Role)
     this.users = this.users.map(u =>
       u.username === username
-        ? { ...u, dropdownOpen: !u.dropdownOpen, role: newRole }
+        ? {
+            ...u,
+            dropdownOpen: !u.dropdownOpen,
+            role: updatedUser.roles[0].type
+          }
         : { ...u, dropdownOpen: false }
     )
   }
