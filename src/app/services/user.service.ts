@@ -6,6 +6,16 @@ import { Role, User } from '../models/user.model'
 const API_BASE_URL = 'https://api.pbrenk.com'
 const LIMIT = 10 // default limit for pagination
 
+export function getDecodedTokenFromLocalStorage(): DecodedToken | null {
+  const token: string | null = getTokenFromLocalStorage()
+  if (!token) return null
+  try {
+    return jwtDecode<DecodedToken>(token)
+  } catch {
+    return null
+  }
+}
+
 export function getTokenFromLocalStorage(): string | null {
   return localStorage.getItem('token')
 }
@@ -13,7 +23,7 @@ export function getTokenFromLocalStorage(): string | null {
 export function getAuthHeaders():
   | { Authorization: string }
   | Record<string, never> {
-  const token = getTokenFromLocalStorage()
+  const token: string | null = getTokenFromLocalStorage()
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
 
@@ -32,20 +42,25 @@ export async function getToken(
 }
 
 type DecodedToken = {
-  roles?: string[]
-  [key: string]: unknown
+  sub: string
+  roles: string[]
+  iat: number
+  exp: number
 }
 
 export function isOfRole(role: string): boolean {
   try {
-    const token = getTokenFromLocalStorage()
+    const token = getDecodedTokenFromLocalStorage()
     if (!token) return false
-
-    const decoded = jwtDecode<DecodedToken>(token)
-    return decoded.roles?.includes(role) ?? false
+    return token.roles?.includes(role) ?? false
   } catch {
     return false
   }
+}
+
+export function isJwtExpired(token: DecodedToken): boolean {
+  const currentTime = Math.floor(Date.now() / 1000)
+  return token.exp < currentTime
 }
 
 export async function getAllUsers(

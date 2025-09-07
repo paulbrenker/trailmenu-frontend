@@ -1,12 +1,17 @@
 import { CanActivateFn, Router } from '@angular/router'
 import { inject } from '@angular/core'
-import { getTokenFromLocalStorage, isOfRole } from './services/user.service'
+import {
+  getDecodedTokenFromLocalStorage,
+  isJwtExpired,
+  isOfRole
+} from './services/user.service'
 
 export const authGuard: CanActivateFn = () => {
-  const token = getTokenFromLocalStorage()
+  const token = getDecodedTokenFromLocalStorage()
   const router = inject(Router)
 
-  if (token) {
+  if (token && !isJwtExpired(token)) {
+    console.log(token)
     return true
   } else {
     router.navigate(['/login'])
