@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core'
 import { Role, User, UserPageDisplay } from '../../../../models/user.model'
 import { getAllUsers, updateUserRole } from '../../../../services/user.service'
 import { PageResponse } from '../../../../models/pagination.model'
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-users',
+  imports: [DatePipe],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
@@ -19,6 +21,7 @@ export class UsersComponent implements OnInit {
     try {
       this.users = (await getAllUsers()).data.map(user => ({
         username: user.username,
+        timestamp: user.addedDate,
         role: user.roles[0].type,
         dropdownOpen: false
       }))
