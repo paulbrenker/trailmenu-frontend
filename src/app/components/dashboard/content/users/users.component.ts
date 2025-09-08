@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, HostListener } from '@angular/core'
 import { Role, User, UserPageDisplay } from '../../../../models/user.model'
 import { getAllUsers, updateUserRole } from '../../../../services/user.service'
 import { PageResponse } from '../../../../models/pagination.model'
@@ -14,18 +14,19 @@ export class UsersComponent implements OnInit {
   users: UserPageDisplay[] = []
   currentPage: PageResponse | null = null
   loading = false
+  fetching = false
   error = ''
 
   async ngOnInit(): Promise<void> {
     this.loading = true
     try {
-      this.users = (await getAllUsers()).data.map(user => ({
+      this.currentPage = await getAllUsers()
+      this.users = this.currentPage.data.map(user => ({
         username: user.username,
         timestamp: user.addedDate,
         role: user.roles[0].type,
         dropdownOpen: false
       }))
-      this.currentPage = await getAllUsers()
     } catch (err) {
       console.error(err)
       this.error = 'Failed to load users'
@@ -57,5 +58,35 @@ export class UsersComponent implements OnInit {
     )
   }
 
-  // TODO implement the user pagination
+  @HostListener('window:scroll', ['$event'])
+  async onScroll(): Promise<void> {
+    const threshold = 100 // px from bottom to trigger load
+    const position = window.scrollY + window.innerHeight
+    const height = document.body.scrollHeight
+
+    if (
+      !this.fetching &&
+      this.currentPage?.pageInfo.hasNext &&
+      position > height - threshold
+    ) {
+      this.fetching = true
+      const nextPage: PageResponse | null = await getAllUsers(
+        undefined,
+        this.currentPage.pageInfo.endCursor ?? undefined
+      )
+      if (nextPage) {
+        this.currentPage = nextPage
+        this.users = [
+          ...this.users,
+          ...nextPage.data.map(user => ({
+            username: user.username,
+            timestamp: user.addedDate,
+            role: user.roles[0].type,
+            dropdownOpen: false
+          }))
+        ]
+      }
+      this.fetching = false
+    }
+  }
 }

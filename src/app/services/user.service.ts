@@ -4,7 +4,7 @@ import { PageResponse } from '../models/pagination.model'
 import { Role, User } from '../models/user.model'
 
 const API_BASE_URL = 'https://api.pbrenk.com'
-const LIMIT = 10 // default limit for pagination
+const LIMIT = 20 // default limit for pagination
 
 export function getDecodedTokenFromLocalStorage(): DecodedToken | null {
   const token: string | null = getTokenFromLocalStorage()
@@ -64,14 +64,14 @@ export function isJwtExpired(token: DecodedToken): boolean {
 }
 
 export async function getAllUsers(
-  limit: number = LIMIT,
-  cursor = ''
+  limit: number | undefined = LIMIT,
+  cursor: string | undefined = undefined
 ): Promise<PageResponse> {
   const response: AxiosResponse<PageResponse> = await axios.get(
     `${API_BASE_URL}/user`,
     {
       headers: getAuthHeaders(),
-      params: { limit, after: cursor }
+      params: { limit, cursor }
     }
   )
   return response.data
