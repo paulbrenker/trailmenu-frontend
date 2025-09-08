@@ -1,5 +1,6 @@
 export interface User {
   username: string
+  addedDate: string
   roles: Role[]
 }
 
@@ -9,6 +10,7 @@ export interface Role {
 
 export interface UserPageDisplay {
   username: string
+  timestamp: string
   role: string
   dropdownOpen: boolean
 }
