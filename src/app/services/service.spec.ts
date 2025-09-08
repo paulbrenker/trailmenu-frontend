@@ -40,7 +40,7 @@ describe('getAllUsers', () => {
         pageInfo: {
           pageSize: 1,
           hasNext: false,
-          cursor: null
+          endCursor: null
         },
         totalCount: 1,
         data: [
@@ -67,7 +67,7 @@ describe('getAllUsers', () => {
       'https://api.pbrenk.com/user',
       {
         headers: {},
-        params: { limit: 10, after: '' }
+        params: { limit: 20, cursor: undefined }
       }
     )
     expect(result).toEqual(mockResponse.data)
@@ -84,7 +84,7 @@ describe('getAllUsers', () => {
       'https://api.pbrenk.com/user',
       expect.objectContaining({
         headers: {},
-        params: { limit: 10, after: '' }
+        params: { limit: 20, cursor: undefined }
       })
     )
   })
