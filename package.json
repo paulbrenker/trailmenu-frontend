@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
-    "test:cov": "jest --workerIdleMemoryLimit=80% --logHeapUsage --coverage --coverageReporters=\"json-summary\"",
+    "test:cov": "jest --workerIdleMemoryLimit=80% --logHeapUsage --coverage --coverageReporters=\"json-summary\" \"text\"",
     "lint": "npx eslint . -c .eslintrc.json",
     "format:check": "prettier --check .",
     "format:write": "prettier --write ."
@@ -22,7 +22,6 @@
       "**/*.spec.ts",
       "**/*.test.ts"
     ],
-    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/*.spec.ts",
@@ -36,6 +35,14 @@
           "unIsolatedModules": true
         }
       ]
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
     }
   },
   "repository": {
