@@ -66,8 +66,8 @@ export function isJwtExpired(token: DecodedToken): boolean {
 export async function getAllUsers(
   limit: number | undefined = LIMIT,
   cursor: string | undefined = undefined
-): Promise<PageResponse> {
-  const response: AxiosResponse<PageResponse> = await axios.get(
+): Promise<PageResponse<User>> {
+  const response: AxiosResponse<PageResponse<User>> = await axios.get(
     `${API_BASE_URL}/user`,
     {
       headers: getAuthHeaders(),

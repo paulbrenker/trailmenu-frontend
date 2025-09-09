@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common'
 })
 export class UsersComponent implements OnInit {
   users: UserPageDisplay[] = []
-  currentPage: PageResponse | null = null
+  currentPage: PageResponse<User> | null = null
   loading = false
   fetching = false
   error = ''
@@ -70,7 +70,7 @@ export class UsersComponent implements OnInit {
       position > height - threshold
     ) {
       this.fetching = true
-      const nextPage: PageResponse | null = await getAllUsers(
+      const nextPage: PageResponse<User> | null = await getAllUsers(
         undefined,
         this.currentPage.pageInfo.endCursor ?? undefined
       )
