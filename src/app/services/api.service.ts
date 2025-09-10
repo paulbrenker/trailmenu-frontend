@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosError, AxiosInstance } from 'axios'
+import { ErrorResponse } from '../models/error-response.model'
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,16 @@ export class ApiService {
 
     this.axiosClient.interceptors.response.use(
       response => response,
-      async error => {
-        console.error('API error:', error)
-        return Promise.reject(error)
+      async (error: AxiosError<ErrorResponse>) => {
+        if (error.response?.data) {
+          const apiError: ErrorResponse = {
+            status: error.response.data.status,
+            code: error.response.data.code,
+            message: error.response.data.message,
+            target: error.response.data.target
+          }
+          return Promise.reject(apiError)
+        }
       }
     )
   }

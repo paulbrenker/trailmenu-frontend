@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios'
-import { PageResponse } from '../models/pagination.model'
+import { PageResponse } from '../models/page-response.model'
 import { User } from '../models/user.model'
 import { ApiService } from './api.service'
 import { Role } from '../models/role.model'
