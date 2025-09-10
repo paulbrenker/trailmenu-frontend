@@ -1,4 +1,4 @@
-export type DecodedToken = {
+export interface DecodedToken {
   sub: string
   roles: string[]
   iat: number
