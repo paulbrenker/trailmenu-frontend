@@ -2,7 +2,7 @@ import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { getToken } from '../../services/user.service'
+import { TokenService } from '../../services/token.service'
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,10 @@ export class LoginComponent {
   password = ''
   errorMessage: string | null = null
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
   ngOnInit(): void {
     document.body.classList.add('login-background')
     document.documentElement.classList.add('login-background')
@@ -29,8 +32,11 @@ export class LoginComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const token = await getToken(this.username, this.password)
-      localStorage.setItem('token', token)
+      const token = await this.tokenService.getToken(
+        this.username,
+        this.password
+      )
+      TokenService.saveTokenToLocalStorage(token)
       this.router.navigate(['/'])
     } catch {
       this.errorMessage = 'Could not log in'

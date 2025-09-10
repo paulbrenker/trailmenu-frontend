@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import { ErrorResponse } from '../models/error-response.model'
-import { getTokenFromLocalStorage } from './user.service'
+import { TokenService } from './token.service'
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class ApiService {
 
     this.axiosClient.interceptors.request.use(
       config => {
-        const token = getTokenFromLocalStorage()
+        const token = TokenService.getTokenFromLocalStorage()
         if (token) {
           config.headers['Authorization'] = `Bearer ${token}`
         }

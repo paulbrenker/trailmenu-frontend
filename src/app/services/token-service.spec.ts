@@ -55,7 +55,7 @@ describe('TokenService Test', () => {
       exp: expiration
     }
 
-    const result = service.jwtIsExpired(token)
+    const result = TokenService.jwtIsExpired(token)
 
     expect(result).toBeFalsy()
   })
@@ -69,7 +69,7 @@ describe('TokenService Test', () => {
       exp: expiration
     }
 
-    const result = service.jwtIsExpired(token)
+    const result = TokenService.jwtIsExpired(token)
 
     expect(result).toBeTruthy()
   })
@@ -82,7 +82,7 @@ describe('TokenService Test', () => {
       exp: 123
     }
 
-    const result = service.userHasRole(token, { type: 'ADMIN' })
+    const result = TokenService.userHasRole(token, { type: 'ADMIN' })
 
     expect(result).toBeFalsy()
   })
@@ -95,7 +95,7 @@ describe('TokenService Test', () => {
       exp: 123
     }
 
-    const result = service.userHasRole(token, { type: 'ADMIN' })
+    const result = TokenService.userHasRole(token, { type: 'ADMIN' })
 
     expect(result).toBeTruthy()
   })
@@ -111,7 +111,7 @@ describe('TokenService Test', () => {
       exp: 1757349574
     }
 
-    const result: DecodedToken = service.getDecodedToken(testToken)
+    const result: DecodedToken = TokenService.getDecodedToken(testToken)
 
     expect(result).toEqual(expectedResult)
   })

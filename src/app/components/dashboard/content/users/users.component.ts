@@ -1,8 +1,10 @@
 import { Component, OnInit, HostListener } from '@angular/core'
-import { Role, User, UserPageDisplay } from '../../../../models/user.model'
-import { getAllUsers, updateUserRole } from '../../../../services/user.service'
-import { PageResponse } from '../../../../models/pagination.model'
+import { User } from '../../../../models/user.model'
+import { PageResponse } from '../../../../models/page-response.model'
 import { DatePipe } from '@angular/common'
+import { UserPageDisplay } from '../../../../models/user-page-display.model'
+import { Role } from '../../../../models/role.model'
+import { UsersService } from '../../../../services/users.service'
 
 @Component({
   selector: 'app-users',
@@ -17,10 +19,12 @@ export class UsersComponent implements OnInit {
   fetching = false
   error = ''
 
+  constructor(private usersService: UsersService) {}
+
   async ngOnInit(): Promise<void> {
     this.loading = true
     try {
-      this.currentPage = await getAllUsers()
+      this.currentPage = await this.usersService.getAllUsers()
       this.users = this.currentPage.data.map(user => ({
         username: user.username,
         timestamp: user.addedDate,
@@ -36,7 +40,7 @@ export class UsersComponent implements OnInit {
   }
 
   async changeRole(username: string, newRole: string): Promise<void> {
-    const updatedUser: User = await updateUserRole(username, {
+    const updatedUser: User = await this.usersService.patchUserRole(username, {
       type: newRole
     } as Role)
     this.users = this.users.map(u =>
@@ -70,10 +74,12 @@ export class UsersComponent implements OnInit {
       position > height - threshold
     ) {
       this.fetching = true
-      const nextPage: PageResponse<User> | null = await getAllUsers(
-        undefined,
-        this.currentPage.pageInfo.endCursor ?? undefined
-      )
+      const nextPage: PageResponse<User> | null =
+        await this.usersService.getAllUsers(
+          undefined,
+          undefined,
+          this.currentPage.pageInfo.endCursor ?? undefined
+        )
       if (nextPage) {
         this.currentPage = nextPage
         this.users = [
