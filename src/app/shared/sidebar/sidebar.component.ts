@@ -4,7 +4,7 @@ import {
   getDecodedToken,
   getTokenFromLocalStorage,
   userHasRole
-} from '../../../util/token.helper'
+} from '../../util/token.helper'
 
 @Component({
   selector: 'app-sidebar',

@@ -1,10 +1,11 @@
 import { Component, OnInit, HostListener } from '@angular/core'
-import { User } from '../../../../models/user.model'
-import { PageResponse } from '../../../../models/page-response.model'
+
 import { DatePipe } from '@angular/common'
-import { UserPageDisplay } from '../../../../models/user-page-display.model'
-import { Role } from '../../../../models/role.model'
-import { UsersService } from '../../../../services/users.service'
+import { UserPageDisplay } from '../../models/user-page-display.model'
+import { PageResponse } from '../../models/page-response.model'
+import { User } from '../../models/user.model'
+import { UsersService } from '../../services/users.service'
+import { Role } from '../../models/role.model'
 
 @Component({
   selector: 'app-users',
