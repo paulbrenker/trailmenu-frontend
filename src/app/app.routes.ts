@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component'
 import { RegisterComponent } from './shared/register/register.component'
 import { adminGuard } from './util/admin.guard'
 import { UsersComponent } from './components/users/users.component'
+import { NotFoundComponent } from './shared/not-found/not-found.component'
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,5 +18,5 @@ export const routes: Routes = [
       { path: 'users', component: UsersComponent, canActivate: [adminGuard] }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent }
 ]
