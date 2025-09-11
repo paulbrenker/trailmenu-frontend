@@ -1,6 +1,10 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { TokenService } from '../../../services/token.service'
+import {
+  getDecodedToken,
+  getTokenFromLocalStorage,
+  userHasRole
+} from '../../../util/token.helper'
 
 @Component({
   selector: 'app-sidebar',
@@ -21,10 +25,10 @@ export class SidebarComponent {
   }
 
   userIsAdmin(): boolean {
-    const token = TokenService.getTokenFromLocalStorage()
+    const token = getTokenFromLocalStorage()
     if (
       token &&
-      TokenService.userHasRole(TokenService.getDecodedToken(token), {
+      userHasRole(getDecodedToken(token), {
         type: 'ADMIN'
       })
     ) {

@@ -16,11 +16,9 @@ export class RegisterComponent {
   password = ''
   errorMessage: string | null = null
   registered = false
+  usersService: UsersService = new UsersService()
 
-  constructor(
-    private router: Router,
-    private usersService: UsersService
-  ) {}
+  constructor(private router: Router) {}
   ngOnInit(): void {
     document.body.classList.add('login-background')
     document.documentElement.classList.add('login-background')

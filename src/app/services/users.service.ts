@@ -3,9 +3,7 @@ import { PageResponse } from '../models/page-response.model'
 import { User } from '../models/user.model'
 import { ApiService } from './api.service'
 import { Role } from '../models/role.model'
-import { Injectable } from '@angular/core'
 
-@Injectable({ providedIn: 'root' })
 export class UsersService extends ApiService {
   async addUser(username: string, password: string): Promise<User> {
     const response: AxiosResponse<User> = await this.axiosClient.post('/user', {

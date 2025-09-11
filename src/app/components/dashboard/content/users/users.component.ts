@@ -18,8 +18,7 @@ export class UsersComponent implements OnInit {
   loading = false
   fetching = false
   error = ''
-
-  constructor(private usersService: UsersService) {}
+  usersService: UsersService = new UsersService()
 
   async ngOnInit(): Promise<void> {
     this.loading = true
