@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { Router } from '@angular/router'
-import axios from 'axios'
+import { UsersService } from '../../services/users.service'
 
 @Component({
   selector: 'app-register',
@@ -16,6 +16,7 @@ export class RegisterComponent {
   password = ''
   errorMessage: string | null = null
   registered = false
+  usersService: UsersService = new UsersService()
 
   constructor(private router: Router) {}
   ngOnInit(): void {
@@ -30,12 +31,8 @@ export class RegisterComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      const response = await axios.post('https://api.pbrenk.com/user', {
-        username: this.username,
-        password: this.password
-      })
+      this.usersService.addUser(this.username, this.password)
 
-      console.log('Login successful, token:', response.data.token)
       this.registered = true
     } catch {
       this.errorMessage = 'The user could not be created'

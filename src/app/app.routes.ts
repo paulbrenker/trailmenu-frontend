@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router'
-import { LoginComponent } from './components/login/login.component'
-import { adminGuard, authGuard } from './auth.guard'
+import { LoginComponent } from './shared/login/login.component'
+import { authGuard } from './util/auth.guard'
 import { DashboardComponent } from './components/dashboard/dashboard.component'
-import { RegisterComponent } from './components/register/register.component'
-import { UsersComponent } from './components/dashboard/content/users/users.component'
+import { RegisterComponent } from './shared/register/register.component'
+import { adminGuard } from './util/admin.guard'
+import { UsersComponent } from './components/users/users.component'
+import { NotFoundComponent } from './shared/not-found/not-found.component'
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,5 +18,5 @@ export const routes: Routes = [
       { path: 'users', component: UsersComponent, canActivate: [adminGuard] }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent }
 ]

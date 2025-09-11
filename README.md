@@ -44,6 +44,10 @@ application will automatically reload if you change any of the source files.
 
 ### CI Pipeline
 
+In the CI pipeline code formatting, Linter compliance and test coverage are
+enforced. Code that does not pass the CI pipeline cannot be merged into the main
+branch.
+
 ### Deployment
 
 This app is deployed directly from the GitHub main branch and is rolled out
@@ -57,5 +61,3 @@ and password and if by the username I will see that your use case is justified I
 will approve you. For example if your username is
 `recruiterAtACompanyIJustAppliedTo` I will approve. If it is `hacker123` I will
 likely not approve.
-
-## Manual for development
