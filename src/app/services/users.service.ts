@@ -32,4 +32,11 @@ export class UsersService extends ApiService {
     )
     return response.data
   }
+
+  async deleteUser(username: string): Promise<void> {
+    const response: AxiosResponse<void> = await this.axiosClient.delete(
+      `/user/${username}`
+    )
+    return response.data
+  }
 }
