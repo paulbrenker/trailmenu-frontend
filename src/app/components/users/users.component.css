@@ -84,3 +84,16 @@ tr:nth-child(odd):hover {
   gap: 4px;
   padding: 6px 0;
 }
+
+.delete-button {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  color: var(--primary-color)
+  border: none;
+  border-radius: 8px;
+  background-color: var(--error-bg);
+}
+
+.delete-button:hover {
+  background-color: var(--error-bg-hover);
+}

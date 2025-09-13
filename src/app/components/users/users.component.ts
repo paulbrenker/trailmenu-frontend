@@ -62,6 +62,11 @@ export class UsersComponent implements OnInit {
     )
   }
 
+  async deleteUser(username: string): Promise<void> {
+    this.usersService.deleteUser(username)
+    this.users = this.users.filter(u => u.username !== username)
+  }
+
   @HostListener('window:scroll', ['$event'])
   async onScroll(): Promise<void> {
     const threshold = 100 // px from bottom to trigger load
