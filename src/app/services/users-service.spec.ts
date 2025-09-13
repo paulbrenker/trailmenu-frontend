@@ -8,7 +8,8 @@ import { Role } from '../models/role.model'
 const axiosClient = {
   post: jest.fn(),
   get: jest.fn(),
-  patch: jest.fn()
+  patch: jest.fn(),
+  delete: jest.fn()
 }
 
 jest.mock('./api.service', () => {
@@ -177,5 +178,43 @@ describe('UsersService Test', () => {
     expect(axiosClient.patch).toHaveBeenCalledWith('/user/john/approval', {
       roles: [{ type: 'USER' }]
     })
+  })
+
+  it('should call /user/{username} when deleting a user', async () => {
+    const testUserName = 'test-user'
+
+    const mockResponse: AxiosResponse<void> = {
+      data: undefined,
+      status: 204,
+      statusText: 'NO_CONTENT',
+      headers: {},
+      config: { headers: {} as AxiosRequestHeaders }
+    }
+
+    axiosClient.delete.mockResolvedValue(mockResponse)
+
+    const response = await service.deleteUser(testUserName)
+
+    expect(axiosClient.delete).toHaveBeenCalledWith(`/user/${testUserName}`)
+    expect(axiosClient.delete).toHaveBeenCalledTimes(1)
+    expect(response).toBeUndefined()
+  })
+
+  it('should return a 404 ErrorResponse when username was not found', async () => {
+    const nonExistUserName = 'non-exist'
+    const errorResponse: ErrorResponse = {
+      status: 404,
+      code: '404 NOT_FOUND',
+      message: 'User was not found',
+      target: '/user'
+    }
+
+    axiosClient.delete.mockRejectedValue(errorResponse)
+
+    await expect(service.deleteUser(nonExistUserName)).rejects.toEqual(
+      errorResponse
+    )
+    expect(axiosClient.delete).toHaveBeenCalledTimes(1)
+    expect(axiosClient.delete).toHaveBeenCalledWith(`/user/${nonExistUserName}`)
   })
 })
