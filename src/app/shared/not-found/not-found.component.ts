@@ -11,4 +11,9 @@ export class NotFoundComponent {
     document.body.classList.add('login-background')
     document.documentElement.classList.add('login-background')
   }
+
+  ngOnDestroy(): void {
+    document.body.classList.remove('login-background')
+    document.documentElement.classList.remove('login-background')
+  }
 }
